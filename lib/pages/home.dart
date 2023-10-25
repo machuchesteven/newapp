@@ -32,8 +32,8 @@ class _HomepageState extends State<Homepage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
-              padding: EdgeInsets.only(left: 15),
-              child: Text("Other Books", style: TextStyle(
+              padding: EdgeInsets.only(left: 15, bottom: 5),
+              child: Text("Foods", style: TextStyle(
                 color: Colors.black,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -44,28 +44,60 @@ class _HomepageState extends State<Homepage> {
             Container(
               height: 150,
               color: Colors.white.withAlpha(100),
-              child: ListView.separated(
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                  separatorBuilder: (context, index){
-                    return const SizedBox(width: 10,);
-                  },
-                  scrollDirection: Axis.horizontal,
-                  itemCount: categories.length,
-                  itemBuilder: (item, index){
-                    return Container(
-                      width: 150,
-                      decoration: BoxDecoration(
-                        color: categories[index].color.withOpacity(.6),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    );
-                  },
-                ),
+              child: _categoriesSecton(),
             )
           ],
         )
       ],)
     );
+  }
+
+  ListView _categoriesSecton() {
+    return ListView.separated(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              separatorBuilder: (context, index){
+                  return const SizedBox(width: 10,);
+                },
+                scrollDirection: Axis.horizontal,
+                itemCount: categories.length,
+                itemBuilder: (item, index){
+                  return Container(
+                    width: 150,
+                    decoration: BoxDecoration(
+                      color: categories[index].color.withOpacity(.6),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          height: 70,
+                          width: 70,
+                          decoration: const BoxDecoration(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SvgPicture.asset(
+                              categories[index].iconPath,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          categories[index].name,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                        
+                      ],
+                    ),
+                  );
+                },
+              );
   }
 
   Container searchBar() {
@@ -96,7 +128,7 @@ class _HomepageState extends State<Homepage> {
               padding: const EdgeInsets.all(8.0),
               child: SvgPicture.asset("assets/icons/Search.svg"),
             ),
-            suffixIcon: Container(
+            suffixIcon: SizedBox(
               width: 100,
               child: IntrinsicHeight(
                 child: Row(

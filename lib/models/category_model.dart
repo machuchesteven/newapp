@@ -11,17 +11,17 @@ class CategoryModel{
 
     categories.add(CategoryModel(
       name: 'Pie',
-      iconPath: 'assets/images/pie.svg',
+      iconPath: 'assets/icons/pie.svg',
       color: const Color.fromARGB(255, 203, 141, 214),	
     ));
     categories.add(CategoryModel(
       name: 'Salad',
-      iconPath: 'assets/images/salmon-nigiri.svg',
+      iconPath: 'assets/icons/salmon-nigiri.svg',
       color: const Color.fromARGB(255, 138, 244, 196),	
     ));
     categories.add(CategoryModel(
       name: 'Cake',
-      iconPath: 'assets/images/pancakes.svg',
+      iconPath: 'assets/icons/pancakes.svg',
       color: const Color.fromARGB(255, 252, 255, 174),	
     ));
 
